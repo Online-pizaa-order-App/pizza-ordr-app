@@ -19,4 +19,9 @@ public class HomeController {
     public String checkout(Model model) {
         return "checkout";
     }
+
+    @RequestMapping("/login")
+    public String login(Model model) {
+        return "loginpage";
+    }
 }
