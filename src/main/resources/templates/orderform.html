@@ -14,55 +14,82 @@
 <body>
 <nav th:replace="base :: navbar"></nav>
 <div class="container container-form">
-    <div class="card border-0 shadow my-5">
-        <div class="card-body">
             <h1 class="header-text">Build Your Own Pizza </h1>
-            <form th:action="@{/process}" th:object="${pizza}" method="POST" enctype="multipart/form-data">
-                <input type="hidden" th:field="*{id}" />
+            <form  method="POST" enctype="multipart/form-data">
                 <!-- Material input -->
-                <div class="input md-form form-group mt-5">
-                    <input type="text"th:field="*{base}" class="form-control" id="formGroupExampleInputMD" placeholder=""/>
-                    <span th:if="${#fields.hasErrors('base')}"
-                          th:errors="*{base}"></span><br />
-                    <label class="text-primary">Dough</label>
-                </div>
+                <label class="text-primary">Crust Type</label>
+                    <select name="crustid" class="browser-default custom-select">
+                        <option value="" disabled="" selected ="">Choose your option</option>
+                        <option value="original-crust">Original</option>
+                        <option value="thin-crust">Thin</option>
+                        <option value="gluten-free-crust">Gluten Free</option>
+                    </select>
+
+
                 <!-- Material input -->
-                <div class="input md-form form-group mt-5">
-                    <input type="text" th:field="*{cheese}" class="form-control" id="formGroupExampleInput2MD" placeholder=""/>
-                    <span th:if="${#fields.hasErrors('cheese')}"
-                          th:errors="*{cheese}"></span><br />
-                    <label class="text-primary">Cheese</label>
+                <label class="text-primary">Sauce</label>
+                <select name="sauceid" class="browser-default custom-select mb-4" id="select">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="original-sauce">Original</option>
+                    <option value="bbq-sauce">BBQ</option>
+                    <option value="alfredo-sauce">Alfredo Sauce</option>
+                </select>
+                <label class="text-primary">Cheeses</label>
+                <select name="cheeseid" class="browser-default custom-select mb-4" id="select">
+                    <option value="" disabled="" selected="">Choose your option</option>
+                    <option value="normal-cheese">Normal</option>
+                    <option value="light-cheese">Light</option>
+                    <option value="none-cheese">None</option>
+                </select>
+                <br />
+
+                <label class="text-primary">Select Meats: </label>
+                <div class="container">
+                    <div>
+                        <input type="checkbox" id="pepperoni" name="pepperoni"
+                        >
+                        <label for="pepperoni">pepperoni</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="grilled-chicken" name="grilled-chicken" >
+                        <label for="grilled-chicken" >grilled-chicken</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="sausage" name="sausage">
+                        <label for="sausage">sausage</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="bacon" name="bacon" >
+                        <label for="bacon" >bacon</label>
+                    </div>
                 </div>
-                <div class="input md-form form-group mt-5">
-                    <input type="text" th:field="*{sauce}" class="form-control" id="formGroupExampleInput3MD" placeholder=""/>
-                    <span th:if="${#fields.hasErrors('sauce')}"
-                          th:errors="*{sauce}"></span><br />
-                    <label class="text-primary">Sauce</label>
+
+                <label class="text-primary">Select Veggies: </label>
+                <div class="container">
+                <div>
+                    <input type="checkbox" id="mushroom" name="mushroom"
+                           >
+                    <label for="mushroom">Mushroom</label>
                 </div>
-                <div class="input md-form form-group mt-5">
-                    <input type="text" th:field="*{veggies}" class="form-control" id="formGroupExampleInput4MD" placeholder="">
-                    <span th:if="${#fields.hasErrors('veggies')}"
-                          th:errors="*{veggies}"></span><br />
-                    <label class="text-primary">Veggies</label>
+                <div>
+                    <input type="checkbox" id="pineapple" name="pineapple" >
+                    <label for="pineapple" >pineapple </label>
                 </div>
-                <div class="input md-form form-group mt-5">
-                    <input type="text" th:field="*{meats}" class="form-control" id="formGroupExampleInput6MD" placeholder="">
-                    <span th:if="${#fields.hasErrors('meats')}"
-                          th:errors="*{meats}"></span><br />
-                    <label class="text-primary">MEats</label>
+                    <div>
+                        <input type="checkbox" id="tomatoes" name="tomatoes">
+                        <label for="tomatoes">tomatoes</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="onions" name="onions">
+                        <label for="onions">onions</label>
+                    </div>
                 </div>
                 <button class="btn-primary btn-sm " type="submit">Send</button>
+
             </form>
         </div>
-//Dough Type
+    </div>
 
-//Sauce
-
-//Cheese
-
-//Veggies Selection
-
-//Meats
 
 
 
