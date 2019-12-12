@@ -12,6 +12,7 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
     <!---Google Fonts--->
     <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="animate.min.css">
 </head>
@@ -32,38 +33,41 @@
         </div>
     </div>
 </header>
-<div class="container"><hr class="style-line" id="line1"></div>
+<div class="container"><hr></div>
 <main>
     <section class="Recommendations">
         <div class="main">
             <h1 class="recommendation-title">Recommendations</h1>
             <ul class="cards">
                 <li class="cards_item">
-                    <div class="card wow fadeInLeft">
-                        <div class="card_image"><img src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>
+                    <div class="card card-landing wow fadeInLeft">
+                        <div class="card_image"><img class="img-response" src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>
                         <div class="card_content">
-                            <h2 class="card_title">The Basic Pizza </h2>
+                            <h2 class="card_title">Build Your Own</h2>
                             <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
-                            <button class="btn card_btn">Customize</button>
+                            <i class="far fa-heart"></i>
+                            <a href="/orderform"><button class="btn card_btn" href="/orderform">Customize</button></a>
                         </div>
                     </div>
                 </li>
                 <li class="cards_item">
-                    <div class="card wow bounceInUp">
-                        <div class="card_image"><img src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>
+                    <div class="card card-landing wow bounceInUp">
+                        <div class="card_image"><img class="img-response" src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>
                         <div class="card_content">
                             <h2 class="card_title">The Basic Pizza </h2>
                             <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
                             <button class="btn card_btn">Customize</button>
                         </div>
                     </div>
                 </li>
                 <li class="cards_item wow fadeInRight">
-                    <div class="card">
-                        <div class="card_image"><img src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>
+                    <div class="card card-landing">
+                        <div class="card_image"><img class="img-response" src="https://x56q142t2ix2x00293jc48ze-wpengine.netdna-ssl.com/placentia/wp-content/uploads/sites/4/2018/08/Papa-Johns-Cheese-Pizza-589x414-2.jpg"></div>
                         <div class="card_content">
                             <h2 class="card_title">The Basic Pizza </h2>
                             <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
+                            <i class="far fa-heart"></i>
                             <button class="btn card_btn">Customize</button>
                         </div>
                     </div>
@@ -77,8 +81,8 @@
             <h1 class="favorites-title">Favorites</h1>
             <ul class="cards">
                 <li class="cards_item">
-                    <div class="card">
-                        <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                    <div class="card card-landing">
+                        <div class="card_image"><img class="img-response" src="https://picsum.photos/500/300/?image=10"></div>
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
@@ -87,8 +91,8 @@
                     </div>
                 </li>
                 <li class="cards_item">
-                    <div class="card">
-                        <div class="card_image"><img src="https://picsum.photos/500/300/?image=5"></div>
+                    <div class="card card-landing">
+                        <div class="card_image"><img class="img-response" src="https://picsum.photos/500/300/?image=5"></div>
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
@@ -97,8 +101,8 @@
                     </div>
                 </li>
                 <li class="cards_item">
-                    <div class="card">
-                        <div class="card_image"><img src="https://picsum.photos/500/300/?image=11"></div>
+                    <div class="card card-landing">
+                        <div class="card_image"><img class="img-response" src="https://picsum.photos/500/300/?image=11"></div>
                         <div class="card_content">
                             <h2 class="card_title">Card Grid Layout</h2>
                             <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>

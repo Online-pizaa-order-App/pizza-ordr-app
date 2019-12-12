@@ -10,10 +10,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/login.css}">
 </head>
 <body>
-
-<div class="container card-padding">
+<div class="login-bg">
+<div class="container container-login">
     <div th:replace="base ::navbar"></div>
     <div class="card w-50 mx-auto">
         <h1 class="login-title text-center">Login Page</h1>
@@ -23,7 +25,7 @@
         <div th:if="${param.logout}" class="alert alert-warning" role="alert">
             You have been logged out
         </div>
-        <div class="card-body px-lg-5 pt-0">
+        <div class="card card-body-login px-lg-5 pt-0">
             <form class="text-center" style="color: #757575;" th:action="@{/login}" method="post">
                 <!-- passes the login information on to Spring Security -->
                 <!-- this requires 'username' and 'password' as well as the "post" to @{/login} -->
@@ -44,6 +46,7 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 
 <div th:replace="base :: javascript-links"></div>

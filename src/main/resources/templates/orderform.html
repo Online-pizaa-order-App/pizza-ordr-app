@@ -17,6 +17,13 @@
             <h1 class="header-text">Build Your Own Pizza </h1>
             <form  method="POST" enctype="multipart/form-data">
                 <!-- Material input -->
+                <label class="text-primary">Size</label>
+                <select name="sizeid" class="browser-default custom-select">
+                    <option value="" disabled="" selected ="">Choose your option</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
                 <label class="text-primary">Crust Type</label>
                     <select name="crustid" class="browser-default custom-select">
                         <option value="" disabled="" selected ="">Choose your option</option>
@@ -44,21 +51,21 @@
                 <br />
 
                 <label class="text-primary">Select Meats: </label>
-                <div class="container">
-                    <div>
+                <div class="container ">
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" id="pepperoni" name="pepperoni"
                         >
                         <label for="pepperoni">pepperoni</label>
                     </div>
-                    <div>
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" id="grilled-chicken" name="grilled-chicken" >
                         <label for="grilled-chicken" >grilled-chicken</label>
                     </div>
-                    <div>
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" id="sausage" name="sausage">
                         <label for="sausage">sausage</label>
                     </div>
-                    <div>
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" id="bacon" name="bacon" >
                         <label for="bacon" >bacon</label>
                     </div>
@@ -66,24 +73,24 @@
 
                 <label class="text-primary">Select Veggies: </label>
                 <div class="container">
-                <div>
-                    <input type="checkbox" id="mushroom" name="mushroom"
-                           >
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" id="mushroom" name="mushroom">
                     <label for="mushroom">Mushroom</label>
                 </div>
-                <div>
+                <div class="form-check form-check-inline">
                     <input type="checkbox" id="pineapple" name="pineapple" >
                     <label for="pineapple" >pineapple </label>
                 </div>
-                    <div>
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" id="tomatoes" name="tomatoes">
                         <label for="tomatoes">tomatoes</label>
                     </div>
-                    <div>
+                    <div class="form-check form-check-inline">
                         <input type="checkbox" id="onions" name="onions">
                         <label for="onions">onions</label>
                     </div>
                 </div>
+
                 <button class="btn-primary btn-sm " type="submit">Send</button>
 
             </form>

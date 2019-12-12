@@ -30,6 +30,13 @@ header,
     height: 100%;
 }
 
+.heading-title {
+    font-family: 'Open Sans', sans-serif;
+    color: #f9f3f4;
+    font-size: 500%;
+    text-shadow: 3px 3px darkred;
+}
+
 
 /* Design */
 *,
@@ -62,7 +69,7 @@ h1 {
     text-align: center;
 }
 
-img {
+.img-response {
     height: auto;
     max-width: 100%;
     vertical-align: middle;
@@ -111,7 +118,7 @@ img {
     }
 }
 
-.card {
+.card-landing {
     background-color: white;
     border-radius: 0.25rem;
     box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
@@ -150,11 +157,13 @@ img {
     height: 215px;
 }
 
-.heading-title {
 
+
+.far {
+    color: white;
 }
 
-.card-padding{
-    padding-top: 100px;
+.far:hover {
+    color: pink;
 }
 
