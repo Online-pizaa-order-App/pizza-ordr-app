@@ -26,7 +26,7 @@
                 <div class="container">
                     <div class="white-text text-center">
                         <h1 class="heading-title animated bounceInDown delay-1s">Welcome to the Pizza Shop!</h1>
-
+                        <button type="button" class="btn btn-outline-danger btn-rounded waves-effect animated fadeIn-1.5s">Order Today!</button>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,9 @@
                             <h2 class="card_title">Build Your Own</h2>
                             <p class="card_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean iaculis mauris sit amet augue feugiat ornare. Morbi erat diam, condimentum ac nisi a, blandit cursus nunc. Quisque suscipit dui nec diam consequat, at elementum lacus congue</p>
                             <i class="far fa-heart"></i>
-                            <a href="/orderform"><button class="btn card_btn" href="/orderform">Customize</button></a>
+                            <form action="#" th:action="@{/form}" th:object="${input}" method="POST">
+                                <input type="hidden" name="id" th:field="*{orderId}"  >
+                                <button class="btn card_btn" href="/orderform">Customize</button></form>
                         </div>
                     </div>
                 </li>

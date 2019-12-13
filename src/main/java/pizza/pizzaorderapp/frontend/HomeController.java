@@ -20,11 +20,11 @@ public class HomeController {
     Input newinput=new Input();
     public double totalPrice=0;
 
-    @GetMapping("/index")
+    @GetMapping("/receipt")
     public String index(Model model){
         model.addAttribute("pizzas",pizzaRepository.findAll());
         model.addAttribute("inputs",inputRepository.findAll());
-        return "index";
+        return "receipt";
     }
     @GetMapping("/frontpage")
     public String frontpage(Model model){
@@ -110,7 +110,7 @@ public class HomeController {
         newinput.setOrderPrice(totalPrice);
         inputRepository.save(newinput);
         System.out.println(newinput.pizzaSet.get(0).getSize());
-        return "redirect:/index";
+        return "redirect:/receipt";
     }
 
 
