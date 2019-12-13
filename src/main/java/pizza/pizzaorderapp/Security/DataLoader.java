@@ -1,4 +1,4 @@
-//package Security;
+//package pizza.pizzaorderapp.Security;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
@@ -8,7 +8,7 @@
 //import java.util.Arrays;
 //
 //@Component
-//public class DataLoader<BCryptPasswordEncoder> implements CommandLineRunner {
+//public class DataLoader implements CommandLineRunner {
 //
 //    @Autowired
 //    UserRepository userRepository;
@@ -20,20 +20,26 @@
 //    private BCryptPasswordEncoder passwordEncoder;
 //
 //    @Override
-//    public void run(String... strings) throws Exception{
+//    public void run(String... strings) throws Exception {
+//
 //        roleRepository.save(new Role("USER"));
 //        roleRepository.save(new Role("ADMIN"));
+//
 //        Role adminRole = roleRepository.findByRole("ADMIN");
 //        Role userRole = roleRepository.findByRole("USER");
 //
-//        User user = new User("jim@jim.com", "password", "Jim", "Jimmerson", true, "jim");
+//        User rose = new User("efrem","pass", "efrem", "berhane", "efrembak@gmail.com", true);
+//        rose.setRoles(Arrays.asList(userRole, adminRole));
+//        userRepository.save(rose);
+//
+//        User user = new User("user", "user", "User", "Last", "user@user.com",true );
 //        user.setRoles(Arrays.asList(userRole));
 //        userRepository.save(user);
 //
-//        user = new User("admin@admin.com", "password", "Admin", "User",
-//                true, "admin");
-//        user.setRoles(Arrays.asList(adminRole));
-//        userRepository.save(user);
-//    }
+//        User admin = new User("admin", "admin", "Admin", "Last", "admin@admin.com",true);
+//        admin.setRoles(Arrays.asList(adminRole));
+//        userRepository.save(admin);
 //
+//    }
 //}
+

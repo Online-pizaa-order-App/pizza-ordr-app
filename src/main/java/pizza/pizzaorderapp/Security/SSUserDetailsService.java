@@ -1,4 +1,4 @@
-//package Security;
+//package pizza.pizzaorderapp.Security;
 //
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,20 +13,21 @@
 //
 //@Transactional
 //@Service
-//public class SSuserDetailsService implements UserDetailsService {
+//public class SSUserDetailsService implements UserDetailsService {
 //
+//    // field
 //    private UserRepository userRepository;
 //
-//    public SSuserDetailsService(UserRepository userRepository){
-//        this.userRepository=userRepository;
+//    // constructor
+//    public SSUserDetailsService(UserRepository userRepository){
+//        this.userRepository = userRepository;
 //    }
 //
-// @Override
-//    public UserDetails loadUserByUsername(String username)
-//     throws UsernameNotFoundException {
-//        try{
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        try {
 //            User user = userRepository.findByUsername(username);
-//            if (user == null){
+//            if (user == null) {
 //                return null;
 //            }
 //            return new org.springframework.security.core.userdetails.User(
@@ -35,14 +36,15 @@
 //        } catch (Exception e) {
 //            throw new UsernameNotFoundException("User not found");
 //        }
-// }
+//    }
 //
-// private Set<GrantedAuthority> getAuthorities(User user){
-//     Set<GrantedAuthority> authorities = new HashSet<>();
-//     for(Role role : user.getRoles()){
-//         GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
-//         authorities.add(grantedAuthority);
-//     }
-//     return authorities;
-// }
+//    private Set<GrantedAuthority> getAuthorities(User user) {
+//        Set<GrantedAuthority> authorities = new HashSet<>();
+//        for (Role role : user.getRoles()) {
+//            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
+//            authorities.add(grantedAuthority);
+//        }
+//        return authorities;
+//    }
+//
 //}

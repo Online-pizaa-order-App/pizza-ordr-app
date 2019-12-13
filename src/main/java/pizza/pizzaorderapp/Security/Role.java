@@ -1,11 +1,12 @@
-//package Security;
-//
+//package pizza.pizzaorderapp.Security;
 //
 //import javax.persistence.*;
 //import java.util.Collection;
 //
 //@Entity
 //public class Role {
+//
+//    // fields
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    private long id;
@@ -15,13 +16,15 @@
 //
 //    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
 //    private Collection<User> users;
-//    public Role(){
 //
-//    }
+//    // constructors
+//    public Role(){}
+//
 //    public Role(String role){
 //        this.role = role;
 //    }
 //
+//    // getters and setters
 //    public long getId() {
 //        return id;
 //    }

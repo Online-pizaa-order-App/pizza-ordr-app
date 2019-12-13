@@ -1,4 +1,4 @@
-//package Security;
+//package pizza.pizzaorderapp.Security;
 //
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //
@@ -12,10 +12,8 @@
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    private long id;
 //
-//    private String image;
-//
-//    @Column(name = "email", nullable = false)
-//    private String email;
+//    @Column(name = "username")
+//    private String username;
 //
 //    @Column(name = "password")
 //    private String password;
@@ -26,21 +24,38 @@
 //    @Column(name = "last_name")
 //    private String lastName;
 //
+//    @Column(name = "email", nullable = false)
+//    private String email;
+//
 //    @Column(name = "enabled")
 //    private boolean enabled;
 //
-//    @Column(name = "username")
-//    private String username;
-//
 //    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
-//        inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    private Collection<Role> roles;
+//    public User(){}
 //
+//    public User(String username, String password, String firstName, String lastName, String email, boolean enabled) {
+//        this.username = username;
+//        this.setPassword(password);         // this ensures the password is encrypted: see below!
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.enabled = enabled;
+//    }
 //
+//    // Security Layer
+//    //**********************************************************************************
+//    // this is similar to the two-step process we use in the SecurityConfiguration class
+//    public void setPassword(String password) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        this.password = passwordEncoder.encode(password);
+//    }
+//    //**********************************************************************************
 //
-//    // CHECK
-//
+//    public String getPassword() {
+//        return password;
+//    }
 //
 //
 //    public long getId() {
@@ -57,15 +72,6 @@
 //
 //    public void setEmail(String email) {
 //        this.email = email;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        this.password = passwordEncoder.encode(password);
 //    }
 //
 //    public String getFirstName() {
@@ -106,28 +112,5 @@
 //
 //    public void setRoles(Collection<Role> roles) {
 //        this.roles = roles;
-//    }
-//
-//    public User(){
-//
-//    }
-//
-//    public User(String email, String password, String firstName,
-//                String lastName, boolean enabled, String username){
-//        this.setEmail(email);
-//        this.setPassword(password);
-//        this.setFirstName(firstName);
-//        this.setLastName(lastName);
-//        this.setEnabled(enabled);
-//        this.setUsername(username);
-//
-//    }
-//
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
 //    }
 //}
