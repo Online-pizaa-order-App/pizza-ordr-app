@@ -20,7 +20,7 @@ public class HomeController {
     Input newinput=new Input();
     public double totalPrice=0;
 
-    @GetMapping("/index")
+    @RequestMapping("/index")
     public String index(Model model){
         model.addAttribute("pizzas",pizzaRepository.findAll());
         model.addAttribute("inputs",inputRepository.findAll());
@@ -33,7 +33,7 @@ public class HomeController {
     }
 
 
-    @RequestMapping (value="/form", method={RequestMethod.POST,RequestMethod.GET})
+    @RequestMapping (value="/orderform", method={RequestMethod.POST,RequestMethod.GET})
     public String form(Model model, @ModelAttribute Input input ){
         model.addAttribute("pizza",new Pizza());
         Date date=new Date();
@@ -41,7 +41,7 @@ public class HomeController {
         newinput.setOrderDate(date);
 
         model.addAttribute("inputs",inputRepository.findAll());
-        return "test";
+        return "orderform";
     }
     @RequestMapping (value="/form2", method={RequestMethod.GET})
     public String form2(Model model ){
@@ -49,6 +49,7 @@ public class HomeController {
 
         return "another";
     }
+
     @PostMapping("/process")
     public String test(@ModelAttribute Pizza pizza){
         double price=0;
