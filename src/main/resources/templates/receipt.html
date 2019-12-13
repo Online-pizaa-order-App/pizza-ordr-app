@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Order Confirmed</title>
 </head>
 <body>
-// for order orders
-// get order id
-//get price
-//get summary of pizza
+<div class="col-md-8">
+
+
+    <h3>Order list</h3>
+    <div th:each="order: ${inputs}"  class="card" >
+        <div class="card-body">
+            Id :  <span th:text="${order.orderId}"></span><br/>
+            Date :  <span th:text="${order.orderDate}"></span><br/>
+            Price:  <span th:text="${order.orderPrice}"></span><br/>
+
+        </div>
+
+    </div>
+
+</div>
 </body>
 </html>

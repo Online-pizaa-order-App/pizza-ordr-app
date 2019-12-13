@@ -15,7 +15,8 @@
 <nav th:replace="base :: navbar"></nav>
 <div class="container container-form">
             <h1 class="header-text">Build Your Own Pizza </h1>
-            <form  method="POST" enctype="multipart/form-data">
+            <form th:action="@{/process}" th:object="${pizza}" method="POST" enctype="multipart/form-data">
+
                 <!-- Material input -->
                 <label class="text-primary">Size</label>
                 <select name="sizeid" class="browser-default custom-select">
@@ -37,36 +38,38 @@
                 <label class="text-primary">Sauce</label>
                 <select name="sauceid" class="browser-default custom-select mb-4" id="select">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="original-sauce">Original</option>
-                    <option value="bbq-sauce">BBQ</option>
-                    <option value="alfredo-sauce">Alfredo Sauce</option>
+                    <option value="sauce">Original</option>
+                    <option value="sauce">BBQ</option>
+                    <option value="sauce">Alfredo Sauce</option>
+                    <option value="sauce">Ranch</option>
+                    <option value="sauce">Buffalo</option>
                 </select>
                 <label class="text-primary">Cheeses</label>
                 <select name="cheeseid" class="browser-default custom-select mb-4" id="select">
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="normal-cheese">Normal</option>
-                    <option value="light-cheese">Light</option>
-                    <option value="none-cheese">None</option>
+                    <option value="cheese">Normal</option>
+                    <option value="cheese">Light</option>
+                    <option value="cheese">None</option>
                 </select>
                 <br />
 
                 <label class="text-primary">Select Meats: </label>
                 <div class="container ">
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="pepperoni" name="pepperoni"
+                        <input type="checkbox" id="pepperoni" name="meat"
                         >
                         <label for="pepperoni">pepperoni</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="grilled-chicken" name="grilled-chicken" >
+                        <input type="checkbox" id="grilled-chicken" name="meat" >
                         <label for="grilled-chicken" >grilled-chicken</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="sausage" name="sausage">
+                        <input type="checkbox" id="sausage" name="meat">
                         <label for="sausage">sausage</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="bacon" name="bacon" >
+                        <input type="checkbox" id="bacon" name="meat" >
                         <label for="bacon" >bacon</label>
                     </div>
                 </div>
@@ -74,24 +77,24 @@
                 <label class="text-primary">Select Veggies: </label>
                 <div class="container">
                 <div class="form-check form-check-inline">
-                    <input type="checkbox" id="mushroom" name="mushroom">
+                    <input type="checkbox" id="mushroom" name="veggie">
                     <label for="mushroom">Mushroom</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="checkbox" id="pineapple" name="pineapple" >
+                    <input type="checkbox" id="pineapple" name="veggie" >
                     <label for="pineapple" >pineapple </label>
                 </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="tomatoes" name="tomatoes">
+                        <input type="checkbox" id="tomatoes" name="veggie">
                         <label for="tomatoes">tomatoes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="onions" name="onions">
+                        <input type="checkbox" id="onions" name="veggie">
                         <label for="onions">onions</label>
                     </div>
                 </div>
 
-                <button class="btn-primary btn-sm " type="submit">Send</button>
+                <button class="btn-primary btn-sm " type="submit">Order</button>
 
             </form>
         </div>
