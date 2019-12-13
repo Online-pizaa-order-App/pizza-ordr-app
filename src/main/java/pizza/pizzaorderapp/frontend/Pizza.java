@@ -1,20 +1,29 @@
 package pizza.pizzaorderapp.frontend;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Pizza {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long pizzaId;
     private int amount;
-    private Order orderId;
-    private int price;
+    private long ordId;
+    private double price;
+    private String size;
+    private String crust;
+    private String cut;
+    private String bake;
+    private String sauce;
+    private String cheese;
+    private String meat;
+    private String veggie;
 
-    @OneToMany(mappedBy = "pizza",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    public Set<Ingredient> ingredients;
+
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Input input;
 
     public Pizza() {
     }
@@ -35,27 +44,93 @@ public class Pizza {
         this.amount = amount;
     }
 
-    public Order getOrderId() {
-        return orderId;
+    public long getOrdId() {
+        return ordId;
     }
 
-    public void setOrderId(Order orderId) {
-        this.orderId = orderId;
+    public void setOrdId(long ordId) {
+        this.ordId = ordId;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
+
+
+    public String getSize() {
+        return size;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getCrust() {
+        return crust;
+    }
+
+    public void setCrust(String crust) {
+        this.crust = crust;
+    }
+
+    public String getCut() {
+        return cut;
+    }
+
+    public void setCut(String cut) {
+        this.cut = cut;
+    }
+
+    public String getBake() {
+        return bake;
+    }
+
+    public void setBake(String bake) {
+        this.bake = bake;
+    }
+
+    public String getSauce() {
+        return sauce;
+    }
+
+    public void setSauce(String sauce) {
+        this.sauce = sauce;
+    }
+
+    public String getCheese() {
+        return cheese;
+    }
+
+    public void setCheese(String cheese) {
+        this.cheese = cheese;
+    }
+
+    public String getMeat() {
+        return meat;
+    }
+
+    public void setMeat(String meat) {
+        this.meat = meat;
+    }
+
+    public String getVeggie() {
+        return veggie;
+    }
+
+    public void setVeggie(String veggie) {
+        this.veggie = veggie;
+    }
+
+    public Input getInput() {
+        return input;
+    }
+
+    public void setInput(Input input) {
+        this.input = input;
     }
 }
