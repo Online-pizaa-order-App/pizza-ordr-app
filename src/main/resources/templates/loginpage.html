@@ -17,7 +17,7 @@
 <div class="login-bg">
 <div class="container container-login">
     <div th:replace="base ::navbar"></div>
-    <div class="card w-50 mx-auto">
+    <div class="card w-50 mx-auto wow fadeIn" data-wow-delay="1s">
         <h1 class="login-title text-center">Login Page</h1>
         <div th:if="${param.error}" class="alert alert-info" role="alert">
             Invalid username or password
