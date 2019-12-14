@@ -10,6 +10,7 @@ public class Pizza {
     private long pizzaId;
     private int amount;
     private long ordId;
+    private String pic;
     private double price;
     private String size;
     private String crust;
@@ -132,5 +133,13 @@ public class Pizza {
 
     public void setInput(Input input) {
         this.input = input;
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
     }
 }

@@ -26,15 +26,14 @@ public class HomeController {
         model.addAttribute("inputs",inputRepository.findAll());
         return "index";
     }
-    @GetMapping("/frontpage")
-    public String frontpage(Model model){
-        model.addAttribute("input",new Input());
-        return "frontpage";
-    }
+
+
+    ///Customized pizza processing steps
+
 
 
     @RequestMapping (value="/orderform", method={RequestMethod.POST,RequestMethod.GET})
-    public String form(Model model, @ModelAttribute Input input ){
+    public String topizzaform(Model model, @ModelAttribute Input input ){
         model.addAttribute("pizza",new Pizza());
         Date date=new Date();
         newinput=input;
@@ -43,15 +42,21 @@ public class HomeController {
         model.addAttribute("inputs",inputRepository.findAll());
         return "orderform";
     }
-    @RequestMapping (value="/form2", method={RequestMethod.GET})
-    public String form2(Model model ){
+
+    @RequestMapping (value="/orderform2", method={RequestMethod.POST,RequestMethod.GET})
+    public String topizzaform2(Model model){
         model.addAttribute("pizza",new Pizza());
 
-        return "another";
+        return "orderform";
     }
 
-    @PostMapping("/process")
-    public String test(@ModelAttribute Pizza pizza){
+
+
+
+
+    @RequestMapping (value="/process", method={RequestMethod.POST,RequestMethod.GET})
+    public String test(@ModelAttribute Pizza pizza, Model model){
+
         double price=0;
         switch (pizza.getSize()){
             case "Large":
@@ -109,8 +114,59 @@ public class HomeController {
         newinput.setPizzaSet(pizzas);
         newinput.setOrderPrice(totalPrice);
         inputRepository.save(newinput);
+        return "form2";
+    }
+
+
+    ///Pre-defined pizza processing steps
+
+    @RequestMapping (value="/pizzadetail", method={RequestMethod.POST,RequestMethod.GET})
+    public String topizzadeatail(Model model, @ModelAttribute Input input,@RequestParam("pizzaName") String meat ){
+        model.addAttribute("pizza",new Pizza());
+        model.addAttribute("pi",pizzaRepository.findByMeatIgnoreCase(meat));
+        Date date=new Date();
+        newinput=input;
+        newinput.setOrderDate(date);
+
+        model.addAttribute("inputs",inputRepository.findAll());
+        return "pizzadetail";
+    }
+
+
+    @RequestMapping (value="/pizzadetail2", method={RequestMethod.POST,RequestMethod.GET})
+    public String topizzadeatail2(Model model,@RequestParam("pizzaName") String meat ){
+        model.addAttribute("pizza",new Pizza());
+        model.addAttribute("pi",pizzaRepository.findByMeatIgnoreCase(meat));
+
+
+        return "pizzadetail";
+    }
+
+    @PostMapping("/secondprocess")
+    public String predifinedpizza(@RequestParam("pizzaid") long id, Model model){
+       model.addAttribute("input", new Input());
+
+        Pizza pizza=pizzaRepository.findByPizzaId(id);
+        pizza.setOrdId(newinput.getOrderId());
+        pizzaRepository.save(pizza);
+
+
+        List<Pizza> pizzas;
+        if(newinput.pizzaSet != null){
+            pizzas= new ArrayList<>(newinput.pizzaSet);
+        }
+        else{
+
+            pizzas = new ArrayList<>();
+        }
+        pizzas.add(pizza);
+
+        totalPrice+=pizza.getPrice();
+        newinput.setPizzaSet(pizzas);
+        newinput.setOrderPrice(totalPrice);
+        inputRepository.save(newinput);
         System.out.println(newinput.pizzaSet.get(0).getSize());
-        return "redirect:/index";
+        return "form2";
     }
 
 

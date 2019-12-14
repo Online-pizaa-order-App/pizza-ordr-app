@@ -23,7 +23,7 @@ public class HomeControllerKevin {
     @GetMapping("/")
     public String landing(Model model) {
         model.addAttribute("pizzas",pizzaRepository.findAll());
-        model.addAttribute("inputs",new Input());
+        model.addAttribute("input",new Input());
         return "landing";
     }
 
