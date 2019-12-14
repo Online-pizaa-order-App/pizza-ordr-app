@@ -26,7 +26,7 @@
             You have been logged out
         </div>
         <div class="card card-body-login px-lg-5 pt-0">
-            <form class="text-center" style="color: #757575;" th:action="@{/login}" method="post">
+            <form class="text-center" style="color: #757575;" th:action="@{/index}" method="post">
                 <!-- passes the login information on to Spring Security -->
                 <!-- this requires 'username' and 'password' as well as the "post" to @{/login} -->
                 <div class="md-form">
@@ -39,7 +39,7 @@
                 </div>
                 <!-- Register -->
                 <p>Not a member?
-                    <a href="">Register</a>
+                    <a href="/register">Register</a>
                 </p>
                 <button type="submit" class="btn btn-outline-info btn-rounded waves-effect"><i class="fas fa-sign-in-alt pr-2"
                                                                                                aria-hidden="true"></i>Sign in</button>

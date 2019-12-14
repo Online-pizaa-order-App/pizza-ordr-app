@@ -12,99 +12,114 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
 <nav th:replace="base :: navbar"></nav>
-<div class="container container-form">
-            <h1 class="header-text">Build Your Own Pizza </h1>
-            <form th:action="@{/process}" th:object="${pizza}" method="POST" enctype="multipart/form-data">
+</div>
+<div class="container container-wrapper ">
+    <div class="row">
+                <div class="col">
+                    <div class="card border-0 shadow my-5">
+                        <div class="card-body">
+                    <h1 class="header-text">Build Your Own Pizza </h1>
+                    <form th:action="@{/process}" th:object="${pizza}" method="POST" enctype="multipart/form-data">
+                        <!-- Material input -->
+                        <label class="text-primary">Size</label>
+                        <select name="sizeid" class="browser-default custom-select">
+                            <option value="" disabled="" selected ="">Choose your option</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                        <label class="text-primary">Crust Type</label>
+                            <select name="crustid" class="browser-default custom-select">
+                                <option value="" disabled="" selected ="">Choose your option</option>
+                                <option value="original-crust">Original</option>
+                                <option value="thin-crust">Thin</option>
+                                <option value="gluten-free-crust">Gluten Free</option>
+                            </select>
 
-                <!-- Material input -->
-                <label class="text-primary">Size</label>
-                <select name="sizeid" class="browser-default custom-select">
-                    <option value="" disabled="" selected ="">Choose your option</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-                <label class="text-primary">Crust Type</label>
-                    <select name="crustid" class="browser-default custom-select">
-                        <option value="" disabled="" selected ="">Choose your option</option>
-                        <option value="original-crust">Original</option>
-                        <option value="thin-crust">Thin</option>
-                        <option value="gluten-free-crust">Gluten Free</option>
-                    </select>
 
+                        <!-- Material input -->
+                        <label class="text-primary">Sauce</label>
+                        <select name="sauceid" class="browser-default custom-select mb-4" id="select">
+                            <option value="" disabled="" selected="">Choose your option</option>
+                            <option value="sauce">Original</option>
+                            <option value="sauce">BBQ</option>
+                            <option value="sauce">Alfredo Sauce</option>
+                            <option value="sauce">Ranch</option>
+                            <option value="sauce">Buffalo</option>
+                        </select>
+                        <label class="text-primary">Baked</label>
+                        <select name="bakeid" class="browser-default custom-select mb-4" id="select">
+                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Normal">Normal</label>
+                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Well Done">Well Done</label>
+                        </select>
+                        <label class="text-primary">Cheeses</label>
+                        <select name="cheeseid" class="browser-default custom-select mb-4" id="select">
+                            <option value="" disabled="" selected="">Choose your option</option>
+                            <option value="cheese">Normal</option>
+                            <option value="cheese">Light</option>
+                            <option value="cheese">None</option>
+                        </select>
+                        <br />
 
-                <!-- Material input -->
-                <label class="text-primary">Sauce</label>
-                <select name="sauceid" class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="sauce">Original</option>
-                    <option value="sauce">BBQ</option>
-                    <option value="sauce">Alfredo Sauce</option>
-                    <option value="sauce">Ranch</option>
-                    <option value="sauce">Buffalo</option>
-                </select>
-                <label class="text-primary">Baked</label>
-                <select name="bakeid" class="browser-default custom-select mb-4" id="select">
-                <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Normal">Normal</label>
-                <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Well Done">Well Done</label>
-                </select>
-                <label class="text-primary">Cheeses</label>
-                <select name="cheeseid" class="browser-default custom-select mb-4" id="select">
-                    <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="cheese">Normal</option>
-                    <option value="cheese">Light</option>
-                    <option value="cheese">None</option>
-                </select>
-                <br />
+                        <label class="text-primary">Select Meats: </label>
+                        <div class="container ">
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" id="pepperoni" name="meat"
+                                >
+                                <label for="pepperoni">pepperoni</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" id="grilled-chicken" name="meat" >
+                                <label for="grilled-chicken" >grilled-chicken</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" id="sausage" name="meat">
+                                <label for="sausage">sausage</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" id="bacon" name="meat" >
+                                <label for="bacon" >bacon</label>
+                            </div>
+                        </div>
 
-                <label class="text-primary">Select Meats: </label>
-                <div class="container ">
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="pepperoni" name="meat"
-                        >
-                        <label for="pepperoni">pepperoni</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="grilled-chicken" name="meat" >
-                        <label for="grilled-chicken" >grilled-chicken</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="sausage" name="meat">
-                        <label for="sausage">sausage</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="bacon" name="meat" >
-                        <label for="bacon" >bacon</label>
+                        <label class="text-primary">Select Veggies: </label>
+                        <div class="container">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="mushroom" name="veggie">
+                            <label for="mushroom">Mushroom</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" id="pineapple" name="veggie" >
+                            <label for="pineapple" >pineapple </label>
+                        </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" id="tomatoes" name="veggie">
+                                <label for="tomatoes">tomatoes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" id="onions" name="veggie">
+                                <label for="onions">onions</label>
+                            </div>
+                        </div>
+
+                        <button class="btn-primary btn-sm " type="submit">Order</button>
+
+                    </form>
+                        </div>
                     </div>
                 </div>
 
-                <label class="text-primary">Select Veggies: </label>
-                <div class="container">
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" id="mushroom" name="veggie">
-                    <label for="mushroom">Mushroom</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input type="checkbox" id="pineapple" name="veggie" >
-                    <label for="pineapple" >pineapple </label>
-                </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="tomatoes" name="veggie">
-                        <label for="tomatoes">tomatoes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input type="checkbox" id="onions" name="veggie">
-                        <label for="onions">onions</label>
-                    </div>
-                </div>
-
-                <button class="btn-primary btn-sm " type="submit">Order</button>
-
-            </form>
+                    <div class="col">
+                        <br><br><br><br>
+                            <div class="container pizza-builder">
+                                <img src="pizza_builder.jpg" alt="pizza-builder" height="400px" width="400px" >
+                            </div>
+                        </div>
+            </div>
         </div>
     </div>
-
 
 
 
