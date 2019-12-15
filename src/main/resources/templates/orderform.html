@@ -19,24 +19,24 @@
 
                 <!-- Material input -->
                 <label class="text-primary">Size</label>
-                <select name="sizeid" class="browser-default custom-select">
+                <select name="size" class="browser-default custom-select">
                     <option value="" disabled="" selected ="">Choose your option</option>
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
                 </select>
                 <label class="text-primary">Crust Type</label>
-                    <select name="crustid" class="browser-default custom-select">
+                    <select name="crust" class="browser-default custom-select">
                         <option value="" disabled="" selected ="">Choose your option</option>
-                        <option value="original-crust">Original</option>
-                        <option value="thin-crust">Thin</option>
-                        <option value="gluten-free-crust">Gluten Free</option>
+                        <option value="original">Original</option>
+                        <option value="thin">Thin</option>
+                        <option value="gluten-free">Gluten Free</option>
                     </select>
 
 
                 <!-- Material input -->
                 <label class="text-primary">Sauce</label>
-                <select name="sauceid" class="browser-default custom-select mb-4" id="select">
+                <select name="sauce" class="browser-default custom-select mb-4" id="select">
                     <option value="" disabled="" selected="">Choose your option</option>
                     <option value="sauce">Original</option>
                     <option value="sauce">BBQ</option>
@@ -45,31 +45,31 @@
                     <option value="sauce">Buffalo</option>
                 </select>
                 <label class="text-primary">Cheeses</label>
-                <select name="cheeseid" class="browser-default custom-select mb-4" id="select">
+                <select name="cheese" class="browser-default custom-select mb-4" >
                     <option value="" disabled="" selected="">Choose your option</option>
-                    <option value="cheese">Normal</option>
-                    <option value="cheese">Light</option>
-                    <option value="cheese">None</option>
+                    <option value="normal">Normal</option>
+                    <option value="light">Light</option>
+                    <option value="extra">Extra</option>
+                    <option value="none">None</option>
                 </select>
                 <br />
 
                 <label class="text-primary">Select Meats: </label>
                 <div class="container ">
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="pepperoni" name="meat"
-                        >
+                        <input type="checkbox" id="pepperoni" name="meat" value="Pepperoni">
                         <label for="pepperoni">pepperoni</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="grilled-chicken" name="meat" >
+                        <input type="checkbox" id="grilled-chicken" name="meat"  value="chicken">
                         <label for="grilled-chicken" >grilled-chicken</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="sausage" name="meat">
+                        <input type="checkbox" id="sausage" name="meat" value="sausage">
                         <label for="sausage">sausage</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="bacon" name="meat" >
+                        <input type="checkbox" id="bacon" name="meat" value="bacon">
                         <label for="bacon" >bacon</label>
                     </div>
                 </div>
@@ -77,24 +77,24 @@
                 <label class="text-primary">Select Veggies: </label>
                 <div class="container">
                 <div class="form-check form-check-inline">
-                    <input type="checkbox" id="mushroom" name="veggie">
+                    <input type="checkbox" id="mushroom" name="veggie" value="mushroom">
                     <label for="mushroom">Mushroom</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input type="checkbox" id="pineapple" name="veggie" >
+                    <input type="checkbox" id="pineapple" name="veggie" value="peneaple" >
                     <label for="pineapple" >pineapple </label>
                 </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="tomatoes" name="veggie">
-                        <label for="tomatoes">tomatoes</label>
+                        <input type="checkbox" id="tomatoes" name="veggie" value="tomatoes">
+                        <label for="tomatoes">Tomatoes</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input type="checkbox" id="onions" name="veggie">
-                        <label for="onions">onions</label>
+                        <input type="checkbox" id="onions" name="veggie" value="onions">
+                        <label for="onions">Onions</label>
                     </div>
                 </div>
 
-                <button class="btn-primary btn-sm " type="submit">Order</button>
+                <button class="btn-primary btn-sm " type="submit">Add Cart</button>
 
             </form>
         </div>

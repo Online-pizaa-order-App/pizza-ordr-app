@@ -75,7 +75,7 @@ public class SecurityController {
         userService.saveUser(user);
         model.addAttribute("message", "User Account Created");
         model.addAttribute("user", user);
-        model.addAttribute("user_id", userService.getUser().getId());
+
         return "redirect:/index";
 
     }

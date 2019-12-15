@@ -5,17 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pizza.pizzaorderapp.Security.UserRepository;
 
+import javax.jws.WebParam;
 import java.util.*;
 
 @Controller
 public class HomeController {
 
     @Autowired
-    PizzaRepository pizzaRepository;
+   public PizzaRepository pizzaRepository;
     
     @Autowired
-   InputRepository inputRepository;
+   public InputRepository inputRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     Input newinput=new Input();
     public double totalPrice=0;
@@ -29,7 +34,6 @@ public class HomeController {
 
 
     ///Customized pizza processing steps
-
 
 
     @RequestMapping (value="/orderform", method={RequestMethod.POST,RequestMethod.GET})
@@ -59,33 +63,35 @@ public class HomeController {
 
         double price=0;
         switch (pizza.getSize()){
-            case "Large":
+            case "large":
                 price=16.80;
                 break;
-            case "Medium":
+            case "medium":
                 price=14.40;
                 break;
-            case "Small":
+            case "small":
                 price=12.40;
                 break;
         }
         switch (pizza.getCrust()){
-            case "Thin":
+            case "thin":
                 price +=1.5;
                 break;
-            case "Normal":
+            case "normal":
                 price+=0;
+                break;
+            case "gluten-free":
+                price+=1.25;
                 break;
         }
         switch (pizza.getCheese()){
-            case "Extra cheese":
-                price+=1.5;
-                break;
-            case "Parmesan Romano":
+            case "extra":
                 price+=2.5;
                 break;
-            case "3-Cheese Blend":
-                price+=2;
+            case "normal":
+            case "light":
+            case "none":
+                price+=0;
                 break;
         }
         String[] array=pizza.getMeat().split(",");
@@ -95,9 +101,7 @@ public class HomeController {
           price+=(1.50*extra);
         }
 
-        pizza.setPrice(price);
-        pizza.setOrdId(newinput.getOrderId());
-        pizzaRepository.save(pizza);
+
 
 
         List<Pizza> pizzas;
@@ -108,12 +112,23 @@ public class HomeController {
 
             pizzas = new ArrayList<>();
         }
+
+        pizza.setPrice(price);
+//        pizza.setOrdId(newinput.getOrderId());
+
+
+
         pizzas.add(pizza);
 
-        totalPrice+=price;
+//        totalPrice+=price;
         newinput.setPizzaSet(pizzas);
-        newinput.setOrderPrice(totalPrice);
+
+//        newinput.setOrderPrice(totalPrice);
         inputRepository.save(newinput);
+        System.out.println(newinput.pizzaSet.get(0).getMeat());
+
+        pizza.setInput(newinput);
+        pizzaRepository.save(pizza);
         return "form2";
     }
 
@@ -147,8 +162,8 @@ public class HomeController {
        model.addAttribute("input", new Input());
 
         Pizza pizza=pizzaRepository.findByPizzaId(id);
-        pizza.setOrdId(newinput.getOrderId());
-        pizzaRepository.save(pizza);
+//        pizza.setOrdId(newinput.getOrderId());
+
 
 
         List<Pizza> pizzas;
@@ -159,15 +174,52 @@ public class HomeController {
 
             pizzas = new ArrayList<>();
         }
+
         pizzas.add(pizza);
 
-        totalPrice+=pizza.getPrice();
+//        totalPrice+=pizza.getPrice();
         newinput.setPizzaSet(pizzas);
-        newinput.setOrderPrice(totalPrice);
+//        newinput.setOrderPrice(totalPrice);
         inputRepository.save(newinput);
         System.out.println(newinput.pizzaSet.get(0).getSize());
+        pizza.setInput(newinput);
+        pizzaRepository.save(pizza);
         return "form2";
     }
 
 
+    // Displaying shopping cart
+
+    @GetMapping("/cart")
+    public String shoppingcart(Model model){
+        model.addAttribute("inputs",inputRepository.findAll());
+        model.addAttribute("pizzas",pizzaRepository.findAll());
+        double tax=newinput.getOrderPrice()*0.6;
+        model.addAttribute("tax",tax);
+        double total=totalPrice+tax;
+        model.addAttribute("total",total);
+
+        Iterable<Input> inputs=inputRepository.findAll();
+        for(Input input:inputs){
+            double price=0;
+            for(Pizza pizza:input.pizzaSet){
+                price+=pizza.getPrice();
+            }
+            input.setOrderPrice(price);
+        }
+
+
+        return "index";
+    }
+
+
+    // checkout out
+
+    @GetMapping("/checkout")
+    public String checkout(Model model){
+
+
+
+        return "checkout";
+    }
 }
