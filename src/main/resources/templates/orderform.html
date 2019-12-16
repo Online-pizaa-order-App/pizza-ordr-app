@@ -10,6 +10,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <!---Google Fonts--->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -51,8 +55,11 @@
                         </select>
                         <label class="text-primary">Baked</label>
                         <select name="bakeid" class="browser-default custom-select mb-4" id="select">
-                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Normal">Normal</label>
-                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Well Done">Well Done</label>
+                            <option value="" disabled="" selected="">Choose your option</option>
+                            <option value="bake">Normal</option>
+                            <option value="bake">Well Done</option>
+<!--                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Normal">Normal</label>-->
+<!--                        <label class="checkbox btn btn-info "><i class="icon-plus icon-white"></i><input  type="checkbox" name="bake" value="Well Done">Well Done</label>-->
                         </select>
                         <label class="text-primary">Cheeses</label>
                         <select name="cheeseid" class="browser-default custom-select mb-4" id="select">
@@ -64,15 +71,14 @@
                         <br />
 
                         <label class="text-primary">Select Meats: </label>
-                        <div class="container ">
+                        <div class="container">
                             <div class="form-check form-check-inline">
-                                <input type="checkbox" id="pepperoni" name="meat"
-                                >
-                                <label for="pepperoni">pepperoni</label>
+                                <input type="checkbox" id="pepperoni-chosen" name="meat" onclick="pepperoniToggle()">
+                                <label for="pepperoni-chosen" >Pepperoni</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" id="grilled-chicken" name="meat" >
-                                <label for="grilled-chicken" >grilled-chicken</label>
+                                <label for="grilled-chicken" >Grilled-chicken</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" id="sausage" name="meat">
@@ -87,12 +93,12 @@
                         <label class="text-primary">Select Veggies: </label>
                         <div class="container">
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" id="mushroom" name="veggie">
+                            <input type="checkbox" id="mushroom" name="veggie" onclick="mushroomToggle()">
                             <label for="mushroom">Mushroom</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="checkbox" id="pineapple" name="veggie" >
-                            <label for="pineapple" >pineapple </label>
+                            <input type="checkbox" id="green-pepper-chosen" name="veggie" onclick="greenPepperToggle()" >
+                            <label for="green-pepper-chosen" >Green Pepper </label>
                         </div>
                             <div class="form-check form-check-inline">
                                 <input type="checkbox" id="tomatoes" name="veggie">
@@ -113,9 +119,24 @@
 
                     <div class="col">
                         <br><br><br><br>
-                            <div class="container pizza-builder">
-                                <img src="pizza_builder.jpg" alt="pizza-builder" height="400px" width="400px" >
-                            </div>
+                            <div class="pizza-container">
+                                <div class="crust">
+                                    <div class="sauce">
+                                        <div class="cheese">
+                                        <div class="pepperoni">
+                                            <img id="pepperoni-pic" class="pepperoni-pic" src="/pepperoni.svg" style="visibility:hidden">
+                                        </div>
+                                            <div class="mushrooms" >
+                                                <img id="shroom1"  src="http://www.clker.com/cliparts/u/t/6/d/P/w/totetude-mushroom-pizza-topping-th.png"  class="shroom1" style="visibility:hidden">
+                                                <img id="shroom2" src="http://www.clker.com/cliparts/u/t/6/d/P/w/totetude-mushroom-pizza-topping-th.png"  class="shroom2" style="visibility:hidden">
+                                            </div>
+                                            <div class="greenpeppers">
+                                                <img id="green-pepper" src="http://nycrust.com/wp-content/uploads/2019/01/green-peppers.png" class="greenpepper" style="visibility: hidden">
+                                            </div>
+                                    </div>
+                                </div>
+                                </div>
+
                         </div>
             </div>
         </div>
@@ -125,5 +146,6 @@
 
 
 <div th:replace="base :: javascript-links"></div>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
 </html>
