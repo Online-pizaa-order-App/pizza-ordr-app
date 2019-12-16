@@ -178,3 +178,99 @@ h1 {
     color: pink;
 }
 
+.pizza-container {
+    width: 300px;
+    height: 300px;
+//    border: 1px solid;
+    top: 30%;
+    margin-left: 42%;
+    margin-right: 25% !important;
+    position: absolute;
+    text-align: center;
+}
+
+/* Pizza Topping */
+.pepperoni-pic {
+    display: block;
+    margin-left: auto;
+    height: 250px;
+    width: 300px;
+    position: absolute;
+    padding-right: 90px;
+    padding-bottom: 20px;
+}
+
+.crust {
+    background: #ffdd99;
+    height: 280px;
+    width: 280px;
+    border-radius: 12345px;
+    margin: 0 auto;
+    top: 3.5%;
+    left: 3.4%;
+    position: relative;
+    box-shadow: 3px 3px 3px 3px #ccc;
+}
+
+
+.sauce {
+    background: #cc2900;
+    height: 240px;
+    width: 240px;
+    border-radius: 12345px;
+    position: absolute;
+    margin: 0 auto;
+    top: 7.2%;
+    left: 7.2%
+}
+
+
+.cheese {
+    background: #ffffcc;
+    height: 220px;
+    width: 220px;
+    border-radius: 12345px;
+    top: 3.7%;
+    left: 3.7%;
+    position: absolute;
+    margin: 0 auto;
+}
+
+.shroom1 {
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+}
+.shroom2 {
+    height: 40px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+}
+
+.greenpepper {
+    display: block;
+    margin-left: auto;
+    height: 450px;
+    width: 400px;
+    position: absolute;
+    padding-right: 170px;
+    padding-bottom: 210px;
+}
+
+@media screen and (max-width: 680px) {
+    .pizzaContainer {
+        margin-left: 16%;
+        margin-top: 20px;
+    }
+}
+
+.fieldset {
+    border-color: #EEE;
+    width: 10em;
+}
+
+.form-bg {
+    background-color: #2f3640;
+}

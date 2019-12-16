@@ -11,6 +11,9 @@ import pizza.pizzaorderapp.Security.UserRepository;
 import pizza.pizzaorderapp.Security.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -49,6 +52,7 @@ public class HomeController {
     public String index(Model model){
         model.addAttribute("pizzas",pizzaRepository.findAll());
         model.addAttribute("inputs",inputRepository.findAll());
+        model.addAttribute("inp",newinput);
         return "OrderList";
     }
 
@@ -59,9 +63,20 @@ public class HomeController {
     @RequestMapping (value="/orderform", method={RequestMethod.POST,RequestMethod.GET})
     public String topizzaform(Model model, @ModelAttribute Input input ){
         model.addAttribute("pizza",new Pizza());
-        Date date=new Date();
+
+       //setting up the time
+        String pattern = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+
+
+        Locale locale = new Locale("en", "US");
+        DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+        String date1 = dateFormat.format(new Date());
+
+        String fulldate= date + " " +date1;
         newinput=input;
-        newinput.setOrderDate(date);
+        newinput.setOrderDate(fulldate);
 
         model.addAttribute("inputs",inputRepository.findAll());
         model.addAttribute("inp",newinput);
@@ -161,9 +176,20 @@ public class HomeController {
     public String topizzadeatail(Model model, @ModelAttribute Input input,@RequestParam("pizzaName") String meat ){
         model.addAttribute("pizza",new Pizza());
         model.addAttribute("pi",pizzaRepository.findByMeatIgnoreCase(meat));
-        Date date=new Date();
+
+        //setting up the time
+        String pattern = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+
+
+        Locale locale = new Locale("en", "US");
+        DateFormat dateFormat = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);
+        String date1 = dateFormat.format(new Date());
+
+        String fulldate= date + " " +date1;
         newinput=input;
-        newinput.setOrderDate(date);
+        newinput.setOrderDate(fulldate);
 
         model.addAttribute("inputs",inputRepository.findAll());
         model.addAttribute("inp",newinput);
@@ -313,6 +339,50 @@ public class HomeController {
 
         return "receipt";
     }
+
+    @RequestMapping("/login2")
+    public String login(Model model){
+
+        // this bit of code is especially good here, as logout redirects to "/login?logout"
+        if (userService.getUser() != null) {
+            model.addAttribute("user_id", userService.getUser().getId());
+        }
+
+        return "loginpage2";
+
+    }
+
+    @PostMapping("/checkoutprocess2")
+    public String checkoutprocess2(Model model, Principal principal){
+
+        String username=principal.getName();
+        User user=userRepository.findByUsername(username);
+
+
+
+        List<Input> inputs;
+        if(user.inputs != null){
+            inputs= new ArrayList<>(user.inputs);
+        }
+        else{
+
+            inputs = new ArrayList<>();
+        }
+
+        inputs.add(newinput);
+
+        user.setInputs(inputs);
+
+        newinput.setUser(user);
+
+        // if we get this far, then the username and email are valid, and we can move on...
+        userService.saveUser(user);
+        model.addAttribute("message", "User Account Created");
+        model.addAttribute("user", user);
+
+
+        return "receipt";
+    }
     // base html file input repository attachment
 
     @GetMapping("/base")
@@ -341,5 +411,12 @@ public class HomeController {
         return "adminPage";
     }
 
+    // search customer detail
 
+    @PostMapping("/searchcustomer")
+    public String searchcustomer(Model model,@RequestParam("search") String name){
+        model.addAttribute("users",userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(name,name));
+
+        return "searchlist";
+    }
 }

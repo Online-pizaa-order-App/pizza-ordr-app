@@ -2,8 +2,10 @@ package pizza.pizzaorderapp.Security;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+import java.util.ArrayList;
 
+public interface UserRepository extends CrudRepository<User, Long> {
+    ArrayList<User> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String name,String name1);
     //******************************************************************
     // custom Query methods
     //******************************************************************
