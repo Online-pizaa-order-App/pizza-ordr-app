@@ -41,7 +41,7 @@ public class SecurityController {
         if (userService.getUser() != null) {
             model.addAttribute("user_id", userService.getUser().getId());
         }
-        return "admin";
+        return "adminPage";
     }
 
 

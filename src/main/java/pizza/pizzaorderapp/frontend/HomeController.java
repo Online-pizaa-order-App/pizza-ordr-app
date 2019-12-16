@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pizza.pizzaorderapp.Security.UserRepository;
 
-import javax.jws.WebParam;
 import java.util.*;
 
 @Controller
@@ -23,13 +22,27 @@ public class HomeController {
     UserRepository userRepository;
 
     Input newinput=new Input();
-    public double totalPrice=0;
+    Long idOrder;
+
+    //Landing page
+
+    @GetMapping("/")
+    public String landing(Model model) {
+        model.addAttribute("pizzas",pizzaRepository.findAll());
+        model.addAttribute("input",new Input());
+        model.addAttribute("inputs",inputRepository.findAll());
+        model.addAttribute("inp",newinput);
+
+        return "landing";
+    }
+
+//   Report page
 
     @RequestMapping("/index")
     public String index(Model model){
         model.addAttribute("pizzas",pizzaRepository.findAll());
         model.addAttribute("inputs",inputRepository.findAll());
-        return "index";
+        return "OrderList";
     }
 
 
@@ -44,13 +57,14 @@ public class HomeController {
         newinput.setOrderDate(date);
 
         model.addAttribute("inputs",inputRepository.findAll());
+        model.addAttribute("inp",newinput);
         return "orderform";
     }
 
     @RequestMapping (value="/orderform2", method={RequestMethod.POST,RequestMethod.GET})
     public String topizzaform2(Model model){
         model.addAttribute("pizza",new Pizza());
-
+        model.addAttribute("inp",newinput);
         return "orderform";
     }
 
@@ -114,22 +128,22 @@ public class HomeController {
         }
 
         pizza.setPrice(price);
-//        pizza.setOrdId(newinput.getOrderId());
-
 
 
         pizzas.add(pizza);
 
-//        totalPrice+=price;
         newinput.setPizzaSet(pizzas);
+        newinput.setOrderPrice(newinput.getOrderPrice()+price);
 
-//        newinput.setOrderPrice(totalPrice);
-        inputRepository.save(newinput);
-        System.out.println(newinput.pizzaSet.get(0).getMeat());
 
         pizza.setInput(newinput);
+
+
+        model.addAttribute("inp",newinput);
+
         pizzaRepository.save(pizza);
-        return "form2";
+        inputRepository.save(newinput);
+        return "orderform2";
     }
 
 
@@ -144,6 +158,8 @@ public class HomeController {
         newinput.setOrderDate(date);
 
         model.addAttribute("inputs",inputRepository.findAll());
+        model.addAttribute("inp",newinput);
+
         return "pizzadetail";
     }
 
@@ -153,6 +169,7 @@ public class HomeController {
         model.addAttribute("pizza",new Pizza());
         model.addAttribute("pi",pizzaRepository.findByMeatIgnoreCase(meat));
 
+        model.addAttribute("inp",newinput);
 
         return "pizzadetail";
     }
@@ -162,7 +179,6 @@ public class HomeController {
        model.addAttribute("input", new Input());
 
         Pizza pizza=pizzaRepository.findByPizzaId(id);
-//        pizza.setOrdId(newinput.getOrderId());
 
 
 
@@ -177,14 +193,18 @@ public class HomeController {
 
         pizzas.add(pizza);
 
-//        totalPrice+=pizza.getPrice();
         newinput.setPizzaSet(pizzas);
-//        newinput.setOrderPrice(totalPrice);
-        inputRepository.save(newinput);
-        System.out.println(newinput.pizzaSet.get(0).getSize());
+        newinput.setOrderPrice(newinput.getOrderPrice()+pizza.getPrice());
+
+
         pizza.setInput(newinput);
-        pizzaRepository.save(pizza);
-        return "form2";
+
+
+        model.addAttribute("inp",newinput);
+
+        inputRepository.save(newinput);
+
+        return "orderform2";
     }
 
 
@@ -192,26 +212,44 @@ public class HomeController {
 
     @GetMapping("/cart")
     public String shoppingcart(Model model){
+
+
+
         model.addAttribute("inputs",inputRepository.findAll());
         model.addAttribute("pizzas",pizzaRepository.findAll());
-        double tax=newinput.getOrderPrice()*0.6;
-        model.addAttribute("tax",tax);
-        double total=totalPrice+tax;
-        model.addAttribute("total",total);
 
-        Iterable<Input> inputs=inputRepository.findAll();
-        for(Input input:inputs){
+
+
+
+        newinput.setTax(newinput.getOrderPrice()*0.06);
+        newinput.setTotalPrice(newinput.getOrderPrice()+newinput.getTax());
+        model.addAttribute("inp",newinput);
+
+        inputRepository.save(newinput);
+        return "OrderList";
+    }
+
+    //Admin page
+
+    @GetMapping("/admin")
+    public String adminpage(Model model){
+
+
+
+        for(Input input:inputRepository.findAll()){
             double price=0;
             for(Pizza pizza:input.pizzaSet){
                 price+=pizza.getPrice();
             }
             input.setOrderPrice(price);
+            input.setTax(input.getOrderPrice()*0.06);
+            input.setTotalPrice(input.getOrderPrice()+input.getTax());
         }
+        model.addAttribute("inputs",inputRepository.findAll());
 
 
-        return "index";
+          return "adminPage";
     }
-
 
     // checkout out
 
@@ -222,4 +260,33 @@ public class HomeController {
 
         return "checkout";
     }
+
+    // base html file input repository attachment
+
+    @GetMapping("/base")
+    public String basepage(Model model){
+        model.addAttribute("inp",newinput);
+        return "base";
+    }
+
+
+    // Admin update, detail and delete orders
+//
+//    @RequestMapping("/detail/{id}")
+//    public String ViewDetail(@PathVariable("id") long id, Model model){
+//        model.addAttribute("flight",flightRepository.findById(id).get());
+//        return "detail";
+//    }
+//    @RequestMapping("/update/{id}")
+//    public String Update(@PathVariable("id") long id, Model model){
+//        model.addAttribute("flight",flightRepository.findById(id).get());
+//        return "form";
+//    }
+//    @RequestMapping("/delete/{id}")
+//    public String Delete(@PathVariable("id") long id){
+//        inputRepository.;
+//        return "redirect:/";
+//    }
+
+
 }

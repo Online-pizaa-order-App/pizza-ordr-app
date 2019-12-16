@@ -15,6 +15,8 @@ public class Input {
     private double orderPrice;
     private String orderStatus;
     private java.util.Date orderDate;
+    private double tax;
+    private double totalPrice;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "input",fetch = FetchType.EAGER)
 
@@ -61,5 +63,21 @@ public class Input {
 
     public void setPizzaSet(List<Pizza> pizzaSet) {
         this.pizzaSet = pizzaSet;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -39,9 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Menu</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link waves-effect waves-light" href="/cart">
-                    <i class="fas fa-shopping-cart"></i>
+            <li class="nav-item" >
+                <a class="nav-link waves-effect waves-light" href="/cart" th:inline="text">
+                    <i class="fas fa-shopping-cart"> [[${inp.orderPrice}]]</i>
                 </a>
             </li>
         </ul>

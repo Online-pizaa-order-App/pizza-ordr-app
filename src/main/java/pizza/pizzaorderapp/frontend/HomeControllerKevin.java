@@ -20,12 +20,6 @@ public class HomeControllerKevin {
     @Autowired
     InputRepository inputRepository;
 
-    @GetMapping("/")
-    public String landing(Model model) {
-        model.addAttribute("pizzas",pizzaRepository.findAll());
-        model.addAttribute("input",new Input());
-        return "landing";
-    }
 
 
 

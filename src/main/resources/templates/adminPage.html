@@ -17,7 +17,40 @@
     <link rel="stylesheet" href="animate.min.css">
 </head>
 <body>
-<div th:replace="base ::navbar"></div>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/register">Sign Up</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link waves-effect waves-light" href="/cart" >
+                    <i class="fas fa-shopping-cart"> </i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 
 <div class="container" >
@@ -28,27 +61,39 @@
         <div class="col-md-8">
 
 
-                <h3>Order list</h3>
-                <div th:each="input: ${inputs}"  class="card" >
-                    <div class="card-body">
-                        Order Id :  <span th:text="${input.orderId}"></span><br/>
-                        Date :  <span th:text="${input.orderDate}"></span><br/>
-                        Total price:  <span th:text="${input.orderPrice}"></span><br/>
-                        <div th:each="pizza: ${input.pizzaSet}"  class="card" >
-                            <div class="card-body">
-                                Name :  <span th:text="${pizza.getMeat()}"></span><br/>
-                                Crust:  <span th:text="${pizza.getCrust()}"></span><br/>
-                                Cut :  <span th:text="${pizza.getCut()}"></span><br/>
-                                Veggie :  <span th:text="${pizza.getVeggie()}"></span><br/>
-                                cheese :  <span th:text="${pizza.getCheese()}"></span><br/>
-                                price:  <span th:text="${pizza.getPrice()}"></span><br/>
-
-
+            <h3>Order list</h3>
+            <div th:each="input: ${inputs}"  class="card" >
+                <div class="card-body">
+                    Order Id :  <span th:text="${input.orderId}"></span><br/>
+                    Date :  <span th:text="${input.orderDate}"></span><br/>
+            Total price:  <span th:text="${input.orderPrice}"></span><br/>
+                    <div th:each="pizza: ${input.pizzaSet}"  class="card" >
+                        <div class="card-body">
+                            Name :  <span th:text="${pizza.meat}"></span><br/>
+                            Crust:  <span th:text="${pizza.crust}"></span><br/>
+                            Cut :  <span th:text="${pizza.cut}"></span><br/>
+                            Veggie :  <span th:text="${pizza.veggie}"></span><br/>
+                            cheese :  <span th:text="${pizza.cheese}"></span><br/>
+                            price:  <span th:text="${pizza.price}"></span><br/>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a style="margin: 50px" th:href="@{/update/{id}(id=${pizza.pizzaId})}">Update</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a style="margin: 50px" th:href="@{/detail/{id}(id=${pizza.pizzaId})}">Detail</a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a style="margin: 50px" th:href="@{/delete/{id}(id=${pizza.pizzaId})}">Delete</a>
+                                </div>
                             </div>
+
+
                         </div>
 
                     </div>
+
                 </div>
+            </div>
 
 
 
@@ -75,10 +120,10 @@
                     <div th:each="input: ${inputs}"  class="card" >
                         <div class="card-body">
                             Price:  <span th:text="${input.orderPrice}"></span><br/>
-                            Tax:<span th:text="${tax}"></span>
+                            Tax:<span th:text="${input.tax}"></span>
                             <br/>
                             <hr>
-                            Total:<span th:text="total"></span>
+                            Total:<span th:text="${input.totalPrice}"></span>
 
                         </div>
                     </div>
