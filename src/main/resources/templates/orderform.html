@@ -19,11 +19,12 @@
 <div class="container">
 <nav th:replace="base :: navbar"></nav>
 </div>
+<div class="form-bg">
 <div class="container container-wrapper ">
     <div class="row">
                 <div class="col">
-                    <div class="card border-0 shadow my-5">
-                        <div class="card-body">
+                    <div class="card border-0 shadow my-5 w-75 mx-auto">
+                        <div class="card-body ">
                     <h1 class="header-text">Build Your Own Pizza </h1>
                     <form th:action="@{/process}" th:object="${pizza}" method="POST" enctype="multipart/form-data">
                         <!-- Material input -->
@@ -141,7 +142,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
 
 
