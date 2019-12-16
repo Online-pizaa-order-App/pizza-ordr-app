@@ -16,7 +16,7 @@ public class Input {
     private long orderId;
     private double orderPrice;
     private String orderStatus;
-    private java.util.Date orderDate;
+    private String orderDate;
     private double tax;
     private double totalPrice;
 
@@ -54,11 +54,11 @@ public class Input {
         this.orderStatus = orderStatus;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 

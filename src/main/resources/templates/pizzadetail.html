@@ -1,6 +1,50 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--&gt;-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Pizza Detail</title>-->
+<!--    &lt;!&ndash; Font Awesome &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">-->
+<!--    &lt;!&ndash; Bootstrap core CSS &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    &lt;!&ndash; Material Design Bootstrap &ndash;&gt;-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav th:replace="base :: navbar"></nav>-->
+<!--<div th:action="@{/secondprocess}" class="container ">-->
+<!--    <h1 class="header-text">Pizza Detail</h1>-->
+<!--    <div class="card" style="width: 18rem;">-->
+<!--        <img class="card-img-top" th:src="${pi.pic}" alt="Card image cap">-->
+<!--        <div class="card-body">-->
+<!--            <h5 th:inline="text" class="card-title">[[${pi.meat}]] Pizza</h5>-->
+<!--            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--        </div>-->
+<!--        <ul class="list-group list-group-flush">-->
+<!--            <li class="list-group-item">Cras justo odio</li>-->
+<!--            <li class="list-group-item">Dapibus ac facilisis in</li>-->
+<!--            <li class="list-group-item">Vestibulum at eros</li>-->
+<!--        </ul>-->
+<!--        <div class="card-body">-->
+<!--             <form th:action="@{/secondprocess}" th:object="${pizza}" method="post">-->
+<!--            <button name="pizzaid" th:value="${pi.pizzaId}" class="card-link" >Add Cart</button>-->
+<!--             </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
+
+
+
+<!--<div th:replace="base :: javascript-links"></div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
->
 <head>
     <meta charset="UTF-8">
     <title>Pizza Detail</title>
@@ -11,34 +55,33 @@
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
 </head>
-<body>
+<body background="https://www.innercrust.com/assets/img/slide3z.jpg"
+      style="background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
 <nav th:replace="base :: navbar"></nav>
 <div th:action="@{/secondprocess}" class="container ">
-    <h1 class="header-text">Pizza Detail</h1>
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" th:src="${pi.pic}" alt="Card image cap">
+
+    <main class="card" style="width: 50%; height: 50%; top:0; bottom: 10%; left: 0; right: 0; margin: auto;">
+        <img class="card-img-top"
+             src="http://images.bigoven.com/image/upload/v1457113782/awesome-pepperoni-pizza-7f8696.jpg"
+             alt="Card image pepperoni pizza">
         <div class="card-body">
             <h5 th:inline="text" class="card-title">[[${pi.meat}]] Pizza</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Italian Garlic Marinated Pepperoni</li>
+            <li class="list-group-item">Thin Crust Whole Wheat Pizza Flour</li>
+            <li class="list-group-item">Buffalo Mozzarella</li>
         </ul>
         <div class="card-body">
-             <form th:action="@{/secondprocess}" th:object="${pizza}" method="post">
-            <button name="pizzaid" th:value="${pi.pizzaId}" class="card-link" >Add Cart</button>
-             </form>
+            <form th:action="@{/secondprocess}" th:object="${pizza}" method="post">
+                <button name="pizzaid" th:value="${pi.pizzaId}" class="card-link">Add Cart</button>
+            </form>
         </div>
-    </div>
-
+    </main>
 </div>
-
-
-
-
-
+<div th:replace="base ::footer"></div>
 <div th:replace="base :: javascript-links"></div>
 </body>
 </html>
