@@ -68,7 +68,7 @@
                     Date :  <span th:text="${input.orderDate}"></span><br/>
             Total price:  <span th:text="${input.orderPrice}"></span><br/>
                     <div th:each="pizza: ${input.pizzaSet}"  class="card" >
-                        <div class="card-body">
+
                             Name :  <span th:text="${pizza.meat}"></span><br/>
                             Crust:  <span th:text="${pizza.crust}"></span><br/>
                             Cut :  <span th:text="${pizza.cut}"></span><br/>
@@ -86,9 +86,6 @@
                                     <a style="margin: 50px" th:href="@{/delete/{id}(id=${pizza.pizzaId})}">Delete</a>
                                 </div>
                             </div>
-
-
-                        </div>
 
                     </div>
 

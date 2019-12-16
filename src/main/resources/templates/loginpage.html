@@ -16,7 +16,41 @@
 <body>
 <div class="login-bg">
 <div class="container container-login">
-    <div th:replace="base ::navbar"></div>
+    <nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
+        <a class="navbar-brand" href="#">
+            <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Menu</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link waves-effect waves-light" href="/cart" >
+                        <i class="fas fa-shopping-cart"> </i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="card w-50 mx-auto wow fadeIn" data-wow-delay="1s">
         <h1 class="login-title text-center">Login Page</h1>
         <div th:if="${param.error}" class="alert alert-info" role="alert">

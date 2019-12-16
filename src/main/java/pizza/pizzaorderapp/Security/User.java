@@ -1,6 +1,7 @@
 package pizza.pizzaorderapp.Security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import pizza.pizzaorderapp.frontend.Input;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -30,7 +31,11 @@ public class User {
     @Column(name = "enabled")
     private boolean enabled;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
+    public Collection<Input> inputs;
+
+
+    @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
     public User(){}
@@ -112,5 +117,13 @@ public class User {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public Collection<Input> getInputs() {
+        return inputs;
+    }
+
+    public void setInputs(Collection<Input> inputs) {
+        this.inputs = inputs;
     }
 }

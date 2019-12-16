@@ -21,7 +21,7 @@ public class Pizza {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Input input;
 
     public Pizza() {

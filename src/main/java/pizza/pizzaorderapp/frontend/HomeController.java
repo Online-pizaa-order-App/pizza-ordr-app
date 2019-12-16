@@ -4,9 +4,13 @@ package pizza.pizzaorderapp.frontend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pizza.pizzaorderapp.Security.User;
 import pizza.pizzaorderapp.Security.UserRepository;
+import pizza.pizzaorderapp.Security.UserService;
 
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -20,6 +24,9 @@ public class HomeController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private UserService userService;
 
     Input newinput=new Input();
     Long idOrder;
@@ -141,8 +148,9 @@ public class HomeController {
 
         model.addAttribute("inp",newinput);
 
-        pizzaRepository.save(pizza);
+
         inputRepository.save(newinput);
+        pizzaRepository.save(pizza);
         return "orderform2";
     }
 
@@ -256,11 +264,55 @@ public class HomeController {
     @GetMapping("/checkout")
     public String checkout(Model model){
 
-
-
+        model.addAttribute("inp",newinput);
+        model.addAttribute("user",new User());
         return "checkout";
     }
 
+
+    @PostMapping("/checkoutprocess")
+    public String checkoutprocess(Model model, @Valid @ModelAttribute("user") User user,
+                                  BindingResult result){
+        if (result.hasErrors()) { return "registration"; }
+
+        // if the username already exists ::
+        if (userService.countByUsername(user.getUsername()) > 0) {
+            model.addAttribute("message", "username already exists");
+            return "registration";
+        }
+
+        // if the email already exists ::
+        if (userService.countByEmail(user.getEmail()) > 0) {
+            model.addAttribute("message", "this email has already been used to register");
+            return "registration";
+        }
+
+
+        //connect and save order in user account
+
+        List<Input> inputs;
+        if(user.inputs != null){
+            inputs= new ArrayList<>(user.inputs);
+        }
+        else{
+
+            inputs = new ArrayList<>();
+        }
+
+        inputs.add(newinput);
+
+        user.setInputs(inputs);
+
+        newinput.setUser(user);
+
+        // if we get this far, then the username and email are valid, and we can move on...
+        userService.saveUser(user);
+        model.addAttribute("message", "User Account Created");
+        model.addAttribute("user", user);
+
+
+        return "receipt";
+    }
     // base html file input repository attachment
 
     @GetMapping("/base")
@@ -270,23 +322,24 @@ public class HomeController {
     }
 
 
+
     // Admin update, detail and delete orders
-//
-//    @RequestMapping("/detail/{id}")
-//    public String ViewDetail(@PathVariable("id") long id, Model model){
-//        model.addAttribute("flight",flightRepository.findById(id).get());
-//        return "detail";
-//    }
-//    @RequestMapping("/update/{id}")
-//    public String Update(@PathVariable("id") long id, Model model){
-//        model.addAttribute("flight",flightRepository.findById(id).get());
-//        return "form";
-//    }
-//    @RequestMapping("/delete/{id}")
-//    public String Delete(@PathVariable("id") long id){
-//        inputRepository.;
-//        return "redirect:/";
-//    }
+
+    @RequestMapping("/update/{id}")
+    public String Update(@PathVariable("id") long id, Model model){
+        model.addAttribute("pizza",pizzaRepository.findById(id).get());
+
+        model.addAttribute("inp",newinput);
+        return "orderform";
+    }
+    @RequestMapping("/delete/{id}")
+    public String Delete(@PathVariable("id") long id, Model model){
+        for(Input input:inputRepository.findAll()){
+            input.pizzaSet.removeIf(pizza -> pizza.getPizzaId() == id);
+        }
+        model.addAttribute("inputs",inputRepository.findAll());
+        return "adminPage";
+    }
 
 
 }
