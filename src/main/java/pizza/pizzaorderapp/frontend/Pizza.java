@@ -8,8 +8,6 @@ public class Pizza {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long pizzaId;
-    private int amount;
-    private long ordId;
     private String pic;
     private double price;
     private String size;
@@ -23,11 +21,26 @@ public class Pizza {
 
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     public Input input;
 
     public Pizza() {
     }
+
+    public Pizza(String pic, double price, String size, String crust, String cut, String bake
+    , String sauce, String cheese, String meat, String veggie) {
+        this.pic=pic;
+        this.price=price;
+        this.size=size;
+        this.crust=crust;
+        this.cut=cut;
+        this.bake=bake;
+        this.sauce=sauce;
+        this.cheese=cheese;
+        this.meat=meat;
+        this.veggie=veggie;
+    }
+
 
     public long getPizzaId() {
         return pizzaId;
@@ -37,21 +50,8 @@ public class Pizza {
         this.pizzaId = pizzaId;
     }
 
-    public int getAmount() {
-        return amount;
-    }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 
-    public long getOrdId() {
-        return ordId;
-    }
-
-    public void setOrdId(long ordId) {
-        this.ordId = ordId;
-    }
 
     public double getPrice() {
         return price;

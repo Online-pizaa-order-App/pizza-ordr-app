@@ -60,7 +60,7 @@
             You have been logged out
         </div>
         <div class="card card-body-login px-lg-5 pt-0">
-            <form class="text-center" style="color: #757575;"  th:action="@{/checkoutprocess2}" method="post">
+            <form class="text-center" style="color: #757575;" th:action="@{/checkoutprocess2}" method="post">
                 <!-- passes the login information on to Spring Security -->
                 <!-- this requires 'username' and 'password' as well as the "post" to @{/login} -->
                 <div class="md-form">
@@ -84,5 +84,6 @@
 </div>
 
 <div th:replace="base :: javascript-links"></div>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
 </html>

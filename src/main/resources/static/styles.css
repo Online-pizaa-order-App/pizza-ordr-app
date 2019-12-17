@@ -178,7 +178,7 @@ h1 {
     text-align: center;
 }
 
- /* Pizza Topping */
+/* Pizza Topping */
 .pepperoni-pic {
     display: block;
     margin-left: auto;
@@ -203,15 +203,15 @@ h1 {
 
 
 .sauce {
-     background: #cc2900;
-     height: 240px;
-     width: 240px;
-     border-radius: 12345px;
-     position: absolute;
-     margin: 0 auto;
-     top: 7.2%;
-     left: 7.2%
- }
+    background: #cc2900;
+    height: 240px;
+    width: 240px;
+    border-radius: 12345px;
+    position: absolute;
+    margin: 0 auto;
+    top: 7.2%;
+    left: 7.2%
+}
 
 
 .cheese {
@@ -263,5 +263,3 @@ h1 {
 .form-bg {
     background-color: #2f3640;
 }
-
-

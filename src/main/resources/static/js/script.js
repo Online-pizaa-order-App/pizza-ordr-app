@@ -23,4 +23,3 @@ function greenPepperToggle() {
     document.getElementById("green-pepper").style.visibility =
         document.getElementById('green-pepper').style.visibility == 'visible'? 'hidden' : 'visible';
 }
-

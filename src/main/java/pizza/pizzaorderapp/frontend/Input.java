@@ -1,6 +1,8 @@
 package pizza.pizzaorderapp.frontend;
 
 
+import pizza.pizzaorderapp.Security.User;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -14,9 +16,14 @@ public class Input {
     private long orderId;
     private double orderPrice;
     private String orderStatus;
-    private java.util.Date orderDate;
+    private String orderDate;
+    private double tax;
+    private double totalPrice;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "input",fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
+    public User user;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "input")
 
     public List<Pizza> pizzaSet;
 
@@ -47,11 +54,11 @@ public class Input {
         this.orderStatus = orderStatus;
     }
 
-    public Date getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -61,5 +68,29 @@ public class Input {
 
     public void setPizzaSet(List<Pizza> pizzaSet) {
         this.pizzaSet = pizzaSet;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
