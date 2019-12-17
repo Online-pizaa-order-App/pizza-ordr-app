@@ -77,7 +77,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //      this is set up to allow the h2-console for the h2 database
         //      this code implements mySQL but all the h2 stuff is there and ready to go if needed
         http.authorizeRequests()
-                .antMatchers("/**","/orderform", "/h2-console/**", "/register","/css/**", "static/**","/js/**", "/image/**").permitAll()
+                .antMatchers("/**","/index","/orderform","/orderform2",
+                        "/process", "/pizzadetail","/pizzadetail2",
+                        "/secondprocess","/cart","/checkout","/checkoutprocess",
+                        "/checkoutprocess2","/base","/h2-console/**", "/register","/css/**", "static/**","/js/**", "/image/**").permitAll()
                 // everyone is allowed to view root, h2-console, registration page, and all static files
                 .antMatchers("/admin").access("hasAuthority('ADMIN')")
                 .anyRequest().authenticated()

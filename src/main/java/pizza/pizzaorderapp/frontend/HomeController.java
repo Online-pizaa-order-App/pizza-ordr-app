@@ -359,26 +359,10 @@ public class HomeController {
         model.addAttribute("message", "User Account Created");
         model.addAttribute("user", user);
 
-        SmsSend();
 
         return "receipt";
     }
 
-    //Twilio Sms message
-
-       String ACCOUNT_SID = "ACdd440d2a549012837fef4bfaec829898";
-        String AUTH_TOKEN = "ca4e490292facd18b8e47ee9cb03c2d6";
-
-        public  void SmsSend() {
-            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            Message message = Message
-                    .creator(new PhoneNumber("+19177144000"), // to
-                            new PhoneNumber("+12069658039"), // from
-                            "Your order is on its way!")
-                    .create();
-
-            System.out.println(message.getSid());
-        }
 
 
 
