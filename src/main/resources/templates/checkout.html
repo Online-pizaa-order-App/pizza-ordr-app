@@ -12,6 +12,11 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
+
+//when clicking the checkout button
+//get HTTP request from twilio to SmsSender
+//should receive text message
+//
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark red darken-2" th:fragment="navbar">
     <a class="navbar-brand" href="#">
         <img src="/logo.png" height="50px" width="50px" alt="pizza logo">
@@ -194,7 +199,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                <button class="btn btn-primary btn-lg btn-block" id="checkout-btn" type="submit">Continue to checkout</button>
 
             </form>
 
@@ -232,13 +237,6 @@
                     <small class="text-muted">6%</small>
                 </div>
                 <span th:text="${inp.tax}" class="text-muted"></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-                <div class="text-success">
-                    <h6 class="my-0">Promo code</h6>
-                    <small>EXAMPLECODE</small>
-                </div>
-                <span   class="text-success">-$5</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
                 <span>Total (USD)</span>
