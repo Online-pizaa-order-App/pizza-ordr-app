@@ -33,10 +33,14 @@
                     <div class="card-body">
                         Order Id :  <span th:text="${inp.orderId}"></span><br/>
                         Date :  <span th:text="${inp.orderDate}"></span><br/>
-                        Total price:  <span th:text="${inp.orderPrice}"></span><br/>
+                        <br/><br/>
                         <div th:each="pizza: ${inp.pizzaSet}"  class="card" >
+                            <div class="row">
+                                <div class="col-md-6 " style="padding-left: 120px;padding-top: 40px">
                             <img class="card-img-64" th:src="${pizza.getPic()}">
-                            <div class="card-body">
+                                </div>
+                                <div class="col-md-6">
+
                                 Name :  <span th:text="${pizza.getMeat()}"></span><br/>
                                 Crust:  <span th:text="${pizza.getCrust()}"></span><br/>
                                 Cut :  <span th:text="${pizza.getCut()}"></span><br/>
@@ -44,7 +48,7 @@
                                 cheese :  <span th:text="${pizza.getCheese()}"></span><br/>
                                 price:  <span th:text="${pizza.getPrice()}"></span><br/>
 
-
+                            </div>
                             </div>
 
                         </div>

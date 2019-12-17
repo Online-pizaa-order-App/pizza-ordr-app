@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.ArrayList;
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    ArrayList<User> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String name,String name1);
+    User findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String name,String name1);
     //******************************************************************
     // custom Query methods
     //******************************************************************

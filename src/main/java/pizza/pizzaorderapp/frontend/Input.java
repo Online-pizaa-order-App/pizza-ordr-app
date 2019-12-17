@@ -23,7 +23,7 @@ public class Input {
     @ManyToOne(fetch = FetchType.EAGER)
     public User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "input")
+    @OneToMany( mappedBy = "input")
 
     public List<Pizza> pizzaSet;
 

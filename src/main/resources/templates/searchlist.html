@@ -55,16 +55,18 @@
 
 
 <div class="container" >
-    <div class="col-md-8" th:each="user:${users}">
+    <div class="col-md-8">
 
         <h2 th:inline="text">[[${user.firstName}]] [[${user.lastName}]]</h2>
 
-        <div th:each="input: ${user.inputs}"  class="card" >
-            <div class="card-body">
+        <div   class="card" >
+            <div class="card-body" th:each="input:${user.inputs}">
                 Id :  <span th:text="${input.orderId}"></span><br/>
                 Date :  <span th:text="${input.orderDate}"></span><br/>
                 Price:  <span th:text="${input.orderPrice}"></span><br/>
-
+                  <div th:each="pizza:${input.pizzaSet}">
+                      Pizza Name:<span th:text="${pizza.meat}"></span>
+                  </div>
             </div>
 
         </div>

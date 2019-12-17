@@ -62,19 +62,20 @@
 
 
             <h3>Order list</h3>
-            <div th:each="input: ${inputs}"  class="card" >
+            <div th:each="input: ${inputs}"  class="card" style="color: blue">
                 <div class="card-body">
                     Order Id :  <span th:text="${input.orderId}"></span><br/>
                     Date :  <span th:text="${input.orderDate}"></span><br/>
-            Total price:  <span th:text="${input.orderPrice}"></span><br/>
+                    Total price:  <span th:text="${input.orderPrice}"></span><br/><br/>
                     <div th:each="pizza: ${input.pizzaSet}"  class="card" >
-
+                        <div>
                             Name :  <span th:text="${pizza.meat}"></span><br/>
                             Crust:  <span th:text="${pizza.crust}"></span><br/>
                             Cut :  <span th:text="${pizza.cut}"></span><br/>
                             Veggie :  <span th:text="${pizza.veggie}"></span><br/>
                             cheese :  <span th:text="${pizza.cheese}"></span><br/>
                             price:  <span th:text="${pizza.price}"></span><br/>
+                        </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <a style="margin: 50px" th:href="@{/update/{id}(id=${pizza.pizzaId})}">Update</a>

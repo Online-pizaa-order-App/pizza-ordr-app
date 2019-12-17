@@ -11,6 +11,8 @@ import pizza.pizzaorderapp.Security.UserRepository;
 import pizza.pizzaorderapp.Security.UserService;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.security.Principal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -252,11 +254,27 @@ public class HomeController {
         model.addAttribute("inputs",inputRepository.findAll());
         model.addAttribute("pizzas",pizzaRepository.findAll());
 
+      String[][] set=new String[][]{{"pepperoni","https://cdn.shopify.com/s/files/1/0808/5563/products/061219_Pepperoni_Full_800x.jpg?v=1560820716"},{"cheese","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQol9yz-DsDRlgjFwpGbIk8OmWlcqvc0UpMWlsU2t7N33M8RxMr&s"},{"chicken","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrZqxbR7eFasfZKX9Qu9nUBvCSBkCeP3tscjbBbTldJADePxqV4Q&s"},{"sausage","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrZqxbR7eFasfZKX9Qu9nUBvCSBkCeP3tscjbBbTldJADePxqV4Q&s"},{"bacon","https://foodsogoodmall.com/wp-content/uploads/2013/09/Bacon-Pizza.jpg"}};
+       for(String[] link:set){
+           for(Pizza pizza:newinput.pizzaSet){
+                   if(pizza.getMeat().equalsIgnoreCase(link[0])){
+                       pizza.setPic(link[1]);
 
 
+               }
+           }
 
-        newinput.setTax(newinput.getOrderPrice()*0.06);
-        newinput.setTotalPrice(newinput.getOrderPrice()+newinput.getTax());
+       }
+
+       //formatting to two decimal places
+        BigDecimal bd = new BigDecimal(newinput.getOrderPrice()*0.06).setScale(2, RoundingMode.HALF_UP);
+        double tax = bd.doubleValue();
+
+        BigDecimal dd = new BigDecimal(newinput.getOrderPrice()+newinput.getTax()).setScale(2, RoundingMode.HALF_UP);
+        double total = dd.doubleValue();
+
+        newinput.setTax(tax);
+        newinput.setTotalPrice(total);
         model.addAttribute("inp",newinput);
 
         inputRepository.save(newinput);
@@ -330,9 +348,11 @@ public class HomeController {
         user.setInputs(inputs);
 
         newinput.setUser(user);
+        userService.saveUser(user);
+        inputRepository.save(newinput);
 
         // if we get this far, then the username and email are valid, and we can move on...
-        userService.saveUser(user);
+
         model.addAttribute("message", "User Account Created");
         model.addAttribute("user", user);
 
@@ -415,7 +435,8 @@ public class HomeController {
 
     @PostMapping("/searchcustomer")
     public String searchcustomer(Model model,@RequestParam("search") String name){
-        model.addAttribute("users",userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(name,name));
+        model.addAttribute("user",userRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(name,name));
+        model.addAttribute("inputs",inputRepository.findAll());
 
         return "searchlist";
     }
