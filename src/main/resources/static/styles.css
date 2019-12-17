@@ -263,3 +263,31 @@ h1 {
 .form-bg {
     background-color: #2f3640;
 }
+
+
+
+.bg-receipt{
+    background-color: black;
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.second-bg {
+    background-color: grey;
+    height: 50%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-confirmation {
+    background-color: lightgrey;
+    padding-bottom: 20px;
+}
+
+.container-date {
+    float: left;
+}
